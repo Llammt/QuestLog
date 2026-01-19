@@ -62,6 +62,8 @@ dependencies {
     kapt("androidx.room:room-compiler:2.8.4")
 
     implementation("org.jetbrains:annotations:23.0.0")
+
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
 }
 
 configurations.all {
