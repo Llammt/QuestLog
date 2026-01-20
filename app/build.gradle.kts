@@ -64,6 +64,7 @@ dependencies {
     implementation("org.jetbrains:annotations:23.0.0")
 
     implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("androidx.cardview:cardview:1.0.0")
 }
 
 configurations.all {

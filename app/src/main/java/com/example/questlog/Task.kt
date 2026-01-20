@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "tasks_table")
-class Task (
+data class Task (
     @PrimaryKey(autoGenerate = true)
     var taskId : Long = 0L,
 
