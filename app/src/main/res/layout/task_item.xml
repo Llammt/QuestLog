@@ -7,6 +7,10 @@
         <variable
             name="task"
             type="com.example.questlog.Task" />
+
+        <variable
+            name="viewModel"
+            type="com.example.questlog.EditTaskViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -38,6 +42,13 @@
                     android:clickable="false"
                     android:text="Done?"
                     android:checked="@{task.taskDone}"/>
+
+                <Button
+                    android:id="@+id/delete_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delete Task"
+                    android:onClick="@{() -> viewModel.deleteTask()}"/>
 
         </LinearLayout>
 

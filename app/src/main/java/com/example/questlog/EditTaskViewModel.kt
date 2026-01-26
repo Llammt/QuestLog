@@ -1,6 +1,5 @@
 package com.example.questlog
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,12 +14,7 @@ class EditTaskViewModel(taskId: Long, val dao: TaskDao) : ViewModel() {
 
     fun updateTask() {
         viewModelScope.launch {
-            Log.d("EditTaskViewModel", "update id=${task.value!!.taskId}, name=${task.value!!.taskName}")
             dao.update(task.value!!)
-            Log.d(
-                "EditTaskViewModel",
-                "after update name=${task.value?.taskName}"
-            )
             _navigateToList.value = true
         }
     }

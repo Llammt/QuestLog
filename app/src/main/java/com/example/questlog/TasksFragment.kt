@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.questlog.databinding.FragmentTasksBinding
 import androidx.navigation.fragment.findNavController
+import listItemAnimator
 
 class TasksFragment : Fragment() {
     private var _binding : FragmentTasksBinding? = null
@@ -28,11 +29,17 @@ class TasksFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val adapter = TaskItemAdapter { taskId ->
-            viewModel.onTaskClicked(taskId)
-        }
+        val adapter = TaskItemAdapter(
+            clickListener = { taskId ->
+                viewModel.onTaskClicked(taskId)
+            },
+            onDeleteClick = { taskId ->
+                viewModel.deleteTask(taskId)
+            }
+        )
 
         binding.tasksList.adapter = adapter
+        binding.tasksList.itemAnimator = listItemAnimator()
 
         viewModel.tasks.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -49,6 +56,11 @@ class TasksFragment : Fragment() {
         })
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.tasksList.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
     }
 
     override fun onDestroyView() {

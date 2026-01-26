@@ -24,6 +24,14 @@
             android:inputType="text"
             android:text="@={viewModel.task.taskName}"/>
 
+        <EditText
+            android:id="@+id/task_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:padding="8dp"
+            android:text="@={viewModel.task.taskText}"/>
+
         <CheckBox
             android:id="@+id/task_done"
             android:layout_width="match_parent"

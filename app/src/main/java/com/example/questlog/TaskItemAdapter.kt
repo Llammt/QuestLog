@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.questlog.databinding.TaskItemBinding
 
 
-class TaskItemAdapter(val clickListener : (taskId : Long) -> Unit) : ListAdapter<Task, TaskItemAdapter.TaskItemViewHolder>(TaskDiffItemCallback()) {
+class TaskItemAdapter(val clickListener : (taskId : Long) -> Unit, val onDeleteClick: (taskId : Long) -> Unit) : ListAdapter<Task, TaskItemAdapter.TaskItemViewHolder>(TaskDiffItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
             : TaskItemViewHolder = TaskItemViewHolder.inflateFrom(parent)
 
     override fun onBindViewHolder(holder: TaskItemViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, clickListener)
+        holder.bind(item, clickListener, onDeleteClick) ///????
     }
 
     class TaskItemViewHolder(val binding: TaskItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -26,12 +26,16 @@ class TaskItemAdapter(val clickListener : (taskId : Long) -> Unit) : ListAdapter
             }
         }
 
-        fun bind(item : Task, clickListener: (taskId: Long) -> Unit) {
+        fun bind(item : Task, clickListener: (taskId: Long) -> Unit, onDeleteClick: (taskId : Long) -> Unit) {
             binding.task = item
+            binding.executePendingBindings()
+
             binding.root.setOnClickListener {
                 clickListener(item.taskId)
             }
+            binding.deleteButton.setOnClickListener {
+                onDeleteClick(item.taskId)
+            }
         }
-
     }
 }

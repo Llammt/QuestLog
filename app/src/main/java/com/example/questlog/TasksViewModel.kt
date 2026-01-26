@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
 class TasksViewModel(val dao: TaskDao) : ViewModel() {
-    var newTaskName = ""
+    val newTaskName = MutableLiveData("")
+    val newTaskText = MutableLiveData("")
+
     val tasks = dao.getAll()
 
     private val _navigateToTask = MutableLiveData<Long?>()
@@ -16,9 +18,25 @@ class TasksViewModel(val dao: TaskDao) : ViewModel() {
 
     fun addTask() {
         viewModelScope.launch {
-            val task = Task()
-            task.taskName = newTaskName
-            dao.insert(task)
+            val name = newTaskName.value ?: ""
+            val text = newTaskText.value ?: ""
+
+            if (name.isNotBlank()) {
+                val task = Task(
+                    taskName = name,
+                    taskText = text
+                )
+                dao.insert(task)
+
+                newTaskName.value = ""
+                newTaskText.value = ""
+            }
+        }
+    }
+
+    fun deleteTask(taskId : Long) {
+        viewModelScope.launch {
+            dao.deleteById(taskId)
         }
     }
 
