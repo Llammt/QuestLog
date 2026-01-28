@@ -17,29 +17,37 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:id = "@+id/task_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="@string/create_task_hint_text"
-            android:text="@={viewModel.newTaskName}"/>
+<!--        <EditText-->
+<!--            android:id = "@+id/task_name"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:inputType="text"-->
+<!--            android:hint="@string/create_task_hint_text"-->
+<!--            android:text="@={viewModel.newTaskName}"/>-->
 
-        <EditText
-            android:id="@+id/task_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:padding="8dp"
-            android:text="@={viewModel.newTaskText}"/>
+<!--        <EditText-->
+<!--            android:id="@+id/task_text"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="16sp"-->
+<!--            android:padding="8dp"-->
+<!--            android:text="@={viewModel.newTaskText}"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/save_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="@string/create_task_button_text"-->
+<!--            android:onClick="@{() -> viewModel.addTask()}"/>-->
 
         <Button
-            android:id="@+id/save_button"
+            android:id="@+id/create_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="end"
             android:text="@string/create_task_button_text"
-            android:onClick="@{() -> viewModel.addTask()}"/>
+            android:onClick="@{() -> viewModel.onCreateTaskClicked()}"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tasks_list"

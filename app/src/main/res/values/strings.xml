@@ -5,4 +5,6 @@
     <string name="delete_task_button_text">Delete Task</string>
     <string name="checkbox_text">Done?</string>
     <string name="create_task_hint_text">Enter a task name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

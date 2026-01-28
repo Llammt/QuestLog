@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CreateTaskFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.questlog.CreateTaskViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id = "@+id/task_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/create_task_hint_text"
+            android:text="@={viewModel.newTaskName}"/>
+
+        <EditText
+            android:id="@+id/task_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:textSize="16sp"
+            android:padding="8dp"
+            android:text="@={viewModel.newTaskText}"/>
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/create_task_button_text"
+            android:onClick="@{() -> viewModel.addTask()}"/>
+
+    </LinearLayout>
+
+</layout>

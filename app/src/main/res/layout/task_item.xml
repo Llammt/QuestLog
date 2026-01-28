@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.questlog.EditTaskViewModel" />
+            type="com.example.questlog.TasksViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/delete_task_button_text"
-                    android:onClick="@{() -> viewModel.deleteTask()}"/>
+                    android:onClick="@{() -> viewModel.deleteTask(task.taskId)}"/>
 
         </LinearLayout>
 

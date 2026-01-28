@@ -55,6 +55,15 @@ class TasksFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToCreateTask.observe(viewLifecycleOwner) { navigate ->
+            if (navigate == true) {
+                findNavController().navigate(
+                    TasksFragmentDirections.actionTasksFragmentToCreateTaskFragment()
+                )
+                viewModel.onNavigated()
+            }
+        }
+
         return view
     }
 

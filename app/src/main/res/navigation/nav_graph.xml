@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_tasksFragment_to_editTaskFragment"
             app:destination="@id/editTaskFragment" />
+        <action
+            android:id="@+id/action_tasksFragment_to_createTaskFragment"
+            app:destination="@id/createTaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/editTaskFragment"
@@ -27,5 +30,16 @@
             app:destination="@id/tasksFragment"
             app:popUpTo="@id/tasksFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/createTaskFragment"
+        android:name="com.example.questlog.CreateTaskFragment"
+        android:label="fragment_create_task"
+        tools:layout="@layout/fragment_create_task" >
+        <action
+            android:id="@+id/action_createTaskFragment_to_tasksFragment"
+            app:destination="@id/tasksFragment"
+            app:popUpTo="@id/tasksFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>
