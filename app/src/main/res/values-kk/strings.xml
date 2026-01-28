@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuestLog</string>
+
+    <string name="create_task_button_text">Квестті қосу</string>
+    <string name="update_task_button_text">Квестті жаңарту</string>
+    <string name="delete_task_button_text">Квестті жою</string>
+
+    <string name="checkbox_text">Аяқталды ма?</string>
+
+    <string name="create_task_hint_text"> ...Квест атауын енгізіңіз...</string>
+</resources>
