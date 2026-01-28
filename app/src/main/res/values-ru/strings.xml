@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">QuestLog</string>
+    <string name="create_task_button_text">Создать квест</string>
+    <string name="update_task_button_text">Обновить квест</string>
+    <string name="delete_task_button_text">Удалить квест</string>
+    <string name="checkbox_text">Выполнено?</string>
+    <string name="create_task_hint_text">...Название квеста...</string>
+</resources>
