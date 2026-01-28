@@ -11,36 +11,67 @@
             type="com.example.questlog.CreateTaskViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:padding="16dp">
 
-        <EditText
-            android:id = "@+id/task_name"
-            android:layout_width="match_parent"
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/buttonsLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id = "@+id/task_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/create_task_hint_text"
+                    android:text="@={viewModel.newTaskName}"/>
+
+                <EditText
+                    android:id="@+id/task_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:textSize="16sp"
+                    android:padding="8dp"
+                    android:text="@={viewModel.newTaskText}"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/buttonsLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="@string/create_task_hint_text"
-            android:text="@={viewModel.newTaskName}"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-        <EditText
-            android:id="@+id/task_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:textSize="16sp"
-            android:padding="8dp"
-            android:text="@={viewModel.newTaskText}"/>
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/create_task_button_text"
+                android:onClick="@{() -> viewModel.addTask()}"/>
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/create_task_button_text"
-            android:onClick="@{() -> viewModel.addTask()}"/>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
