@@ -12,51 +12,31 @@
             type="com.example.questlog.TasksViewModel" />
     </data>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-<!--        <EditText-->
-<!--            android:id = "@+id/task_name"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:inputType="text"-->
-<!--            android:hint="@string/create_task_hint_text"-->
-<!--            android:text="@={viewModel.newTaskName}"/>-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/task_text"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="16sp"-->
-<!--            android:padding="8dp"-->
-<!--            android:text="@={viewModel.newTaskText}"/>-->
-
-<!--        <Button-->
-<!--            android:id="@+id/save_button"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:text="@string/create_task_button_text"-->
-<!--            android:onClick="@{() -> viewModel.addTask()}"/>-->
-
-        <Button
-            android:id="@+id/create_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="@string/create_task_button_text"
-            android:onClick="@{() -> viewModel.onCreateTaskClicked()}"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tasks_list"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="top"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            android:background="@color/background"
+            android:padding="12dp"            >
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/create_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/create_task_button_text"
+                android:onClick="@{() -> viewModel.onCreateTaskClicked()}"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tasks_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        </LinearLayout>
 
 </layout>
