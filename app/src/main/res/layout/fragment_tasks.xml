@@ -27,14 +27,11 @@
                 android:src="@drawable/header"
                 android:layout_gravity="top"/>
 
-            <Button
-                android:id="@+id/create_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="@string/create_task_button_text"
-                android:fontFamily="@font/kurale_regular"
-                android:onClick="@{() -> viewModel.onCreateTaskClicked()}"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider_color"
+                android:layout_margin="20dp" />
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -45,6 +42,24 @@
                 android:clipToPadding="false"
                 android:padding="20dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider_color"
+                android:layout_margin="20dp" />
+
+            <ImageButton
+                android:id="@+id/create_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/crete_button_2"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{() -> viewModel.onCreateTaskClicked()}"/>
 
         </LinearLayout>
 
