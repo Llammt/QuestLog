@@ -55,10 +55,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_gravity="center"
-                android:src="@drawable/crete_button_2"
+                android:src="@drawable/create_button_selector"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:stateListAnimator="@animator/scale_press"
                 android:onClick="@{() -> viewModel.onCreateTaskClicked()}"/>
 
         </LinearLayout>
