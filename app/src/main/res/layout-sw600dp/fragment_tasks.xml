@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:animateLayoutChanges="true"
+    tools:context=".TasksFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.questlog.TasksViewModel" />
+    </data>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/background_3"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:paddingTop="20dp"
+                android:src="@drawable/header"
+                android:layout_gravity="top"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/divider_color"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginTop="20dp"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tasks_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                android:padding="20dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/divider_color"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="20dp"/>
+
+            <ImageButton
+                android:id="@+id/create_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginEnd="150dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/create_button_selector"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:stateListAnimator="@animator/scale_press"
+                android:onClick="@{() -> viewModel.onCreateTaskClicked()}"/>
+
+        </LinearLayout>
+
+</layout>
