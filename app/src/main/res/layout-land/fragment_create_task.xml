@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".EditTaskFragment">
+    tools:context=".CreateTaskFragment">
 
     <data>
         <variable
             name="viewModel"
-            type="com.example.questlog.EditTaskViewModel" />
+            type="com.example.questlog.CreateTaskViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
         android:padding="16dp"
         android:layout_margin="16dp"
         android:orientation="vertical"
-        android:background="@drawable/background_3">
+        android:background="@drawable/background_3_land">
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -32,72 +32,59 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/task_name"
+                    android:id = "@+id/task_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/create_task_hint_text"
                     android:textSize="16sp"
                     android:fontFamily="@font/kurale_regular"
-                    android:inputType="text"
-                    android:text="@={viewModel.task.taskName}"/>
+                    android:text="@={viewModel.newTaskName}"/>
 
                 <EditText
                     android:id="@+id/task_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
                     android:textSize="16sp"
                     android:fontFamily="@font/kurale_regular"
                     android:padding="8dp"
-                    android:text="@={viewModel.task.taskText}"
-                    android:scrollbars="vertical"
-                    android:overScrollMode="ifContentScrolls"/>
+                    android:text="@={viewModel.newTaskText}"/>
 
             </LinearLayout>
+
         </ScrollView>
 
         <LinearLayout
             android:id="@+id/buttonsLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:layout_width="240dp"
+            android:layout_height="0dp"
+            android:padding="4dp"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <CheckBox
-                android:id="@+id/task_done"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:textSize="16sp"
-                android:fontFamily="@font/kurale_regular"
-                android:padding="8dp"
-                android:button="@drawable/checkbox_image_selector"
-                android:buttonTint="@null"
-                app:buttonTint="@null"
-                android:text="@string/checkbox_text"
-                android:checked="@={viewModel.task.taskDone}"/>
-
             <ImageButton
-                android:id="@+id/update_button"
+                android:id="@+id/save_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_gravity="center"
-                android:src="@drawable/edit_button_selector"
+                android:src="@drawable/create_button_selector"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:stateListAnimator="@animator/scale_press"
-                android:onClick="@{() -> viewModel.updateTask()}"/>
-/>
+                android:onClick="@{() -> viewModel.addTask()}"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

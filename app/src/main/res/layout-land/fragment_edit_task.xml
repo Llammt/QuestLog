@@ -17,7 +17,7 @@
         android:padding="16dp"
         android:layout_margin="16dp"
         android:orientation="vertical"
-        android:background="@drawable/background_3">
+        android:background="@drawable/background_3_land">
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -60,12 +60,12 @@
 
         <LinearLayout
             android:id="@+id/buttonsLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:layout_width="240dp"
+            android:layout_height="0dp"
+            android:padding="4dp"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
