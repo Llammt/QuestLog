@@ -11,6 +11,7 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
+import kotlin.text.insert
 
 @RunWith(AndroidJUnit4::class)
 class TaskDaoInsertTest {
@@ -38,19 +39,82 @@ class TaskDaoInsertTest {
     @Test
     fun insertTask_savesCorrectData() = runBlocking {
 
-        // GIVEN — создаём задачу
         val task = Task(
             taskName = "Epic quest",
+            taskText = "Do epic stuff",
             taskDone = false
         )
 
-        // WHEN — вставляем
         val testTaskId = dao.insert(task)
 
-        // THEN — читаем обратно
         val loadedTask = dao.getById(testTaskId)
 
-        assertEquals("Epic quest", loadedTask.taskName)
+        assertEquals("Epic quest", loadedTask!!.taskName)
+        assertEquals("Do epic stuff", loadedTask.taskText)
         assertFalse(loadedTask.taskDone)
+    }
+
+    @Test
+    fun editTask_savesCorrectData() = runBlocking {
+
+        val originalTask = Task(
+            taskName = "Epic quest",
+            taskText = "Do epic stuff",
+            taskDone = false
+        )
+
+        val testTaskId = dao.insert(originalTask)
+
+        val taskToUpdate = dao.getById(testTaskId)
+
+        taskToUpdate!!.taskName = "Another epic quest"
+        taskToUpdate.taskText = "Do another epic stuff"
+        taskToUpdate.taskDone = true
+
+        dao.update(taskToUpdate)
+
+        val updatedTask = dao.getById(testTaskId)
+
+        assertEquals("Another epic quest", updatedTask!!.taskName)
+        assertEquals("Do another epic stuff", updatedTask.taskText)
+        assertTrue(updatedTask.taskDone)
+    }
+
+    @Test
+    fun deleteTask_deleteDataCorrectly() = runBlocking {
+
+        val task = Task(
+            taskName = "Epic quest",
+            taskText = "Do epic stuff",
+            taskDone = false
+        )
+
+        val testTaskId = dao.insert(task)
+
+        val loadedTask = dao.getById(testTaskId)
+        dao.delete(loadedTask!!)
+
+        // Assert
+        val deletedTask = dao.getById(testTaskId)
+        assertNull(deletedTask)
+    }
+
+    @Test
+    fun deleteTaskById_deleteDataCorrectly() = runBlocking {
+
+        val task = Task(
+            taskName = "Epic quest",
+            taskText = "Do epic stuff",
+            taskDone = false
+        )
+
+        val testTaskId = dao.insert(task)
+
+        val loadedTask = dao.getById(testTaskId)
+        dao.deleteById(loadedTask!!.taskId)
+
+        // Assert
+        val deletedTask = dao.getById(testTaskId)
+        assertNull(deletedTask)
     }
 }

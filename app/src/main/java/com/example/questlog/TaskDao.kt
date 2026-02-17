@@ -28,6 +28,6 @@ interface TaskDao {
     fun getAll(): LiveData<List<Task>>
 
     @Query("SELECT * FROM tasks_table WHERE taskId = :id")
-    suspend fun getById(id: Long): Task
+    suspend fun getById(id: Long): Task?
 
 }
