@@ -67,6 +67,15 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.0")
+
+    debugImplementation("androidx.fragment:fragment-testing:1.1.0-beta01")
+    debugImplementation("androidx.fragment:fragment-ktx:1.1.0-beta01")
+    debugImplementation("androidx.test:core:1.2.0")
+    debugImplementation("androidx.test:rules:1.2.0")
+    debugImplementation("androidx.test:runner:1.2.0")
+
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
+
 }
 
 configurations.all {
