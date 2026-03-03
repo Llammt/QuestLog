@@ -1,5 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.QuestLog" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/background_land</item>
+        <item name="colorControlNormal">@color/divider_color</item>
+        <item name="colorControlActivated">@color/divider_color</item>
+        <item name="android:textColorHighlight">@color/divider_color</item>
+        <item name="colorPrimary">@color/divider_color</item>
+        <item name="colorOnPrimary">@android:color/white</item>
     </style>
 </resources>
