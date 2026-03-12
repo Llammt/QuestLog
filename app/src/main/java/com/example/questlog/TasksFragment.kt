@@ -10,9 +10,11 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.questlog.databinding.FragmentTasksBinding
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import listItemAnimator
 
 class TasksFragment : Fragment() {
@@ -47,26 +49,32 @@ class TasksFragment : Fragment() {
         binding.tasksList.adapter = adapter
         binding.tasksList.itemAnimator = listItemAnimator()
 
-        viewModel.tasks.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.submitList(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.tasks.collect { tasks ->
+                adapter.submitList(tasks)
             }
-        })
+        }
 
-        viewModel.navigateToTask.observe(viewLifecycleOwner, Observer { taskId ->
-            taskId?.let {
-                val action = TasksFragmentDirections.actionTasksFragmentToEditTaskFragment(taskId)
-                this.findNavController().navigate(action)
-                viewModel.onTaskNavigated()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.navigateToTask.collect { taskId ->
+                taskId?.let {
+                    val action =
+                        TasksFragmentDirections.actionTasksFragmentToEditTaskFragment(taskId)
+                    findNavController().navigate(action)
+                    viewModel.onTaskNavigated()
+                }
             }
-        })
+        }
 
-        viewModel.navigateToCreateTask.observe(viewLifecycleOwner) { navigate ->
-            if (navigate == true) {
-                findNavController().navigate(
-                    TasksFragmentDirections.actionTasksFragmentToCreateTaskFragment()
-                )
-                viewModel.onNavigated()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.navigateToCreateTask.collect { navigate ->
+                if (navigate) {
+                    findNavController().navigate(
+                        TasksFragmentDirections
+                            .actionTasksFragmentToCreateTaskFragment()
+                    )
+                    viewModel.onNavigated()
+                }
             }
         }
 

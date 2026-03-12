@@ -6,6 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
@@ -25,7 +26,7 @@ interface TaskDao {
     fun get(taskId: Long): LiveData<Task>
 
     @Query("SELECT * FROM tasks_table ORDER BY taskId DESC")
-    fun getAll(): LiveData<List<Task>>
+    fun getAll(): Flow<List<Task>>
 
     @Query("SELECT * FROM tasks_table WHERE taskId = :id")
     suspend fun getById(id: Long): Task?

@@ -4,20 +4,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class TasksViewModel(val dao: TaskDao) : ViewModel() {
-    val newTaskName = MutableLiveData("")
-    val newTaskText = MutableLiveData("")
+    private val _newTaskName = MutableStateFlow("")
+    val newTaskName: StateFlow<String> = _newTaskName
+
+    private val _newTaskText = MutableStateFlow("")
+    val newTaskText: StateFlow<String> = _newTaskText
     val tasks = dao.getAll()
 
-    private val _navigateToTask = MutableLiveData<Long?>()
-    val navigateToTask: LiveData<Long?>
-        get() = _navigateToTask
+    private val _navigateToTask = MutableStateFlow<Long?>(null)
+    val navigateToTask: StateFlow<Long?> = _navigateToTask
 
-    private val _navigateToCreateTask = MutableLiveData<Boolean>()
-    val navigateToCreateTask: LiveData<Boolean>
-        get() = _navigateToCreateTask
+    private val _navigateToCreateTask = MutableStateFlow(false)
+    val navigateToCreateTask: StateFlow<Boolean> = _navigateToCreateTask
 
     fun onCreateTaskClicked() {
         _navigateToCreateTask.value = true
@@ -35,8 +38,8 @@ class TasksViewModel(val dao: TaskDao) : ViewModel() {
 
     fun addTask() {
         viewModelScope.launch {
-            val name = newTaskName.value ?: ""
-            val text = newTaskText.value ?: ""
+            val name = newTaskName.value
+            val text = newTaskText.value
 
             if (name.isNotBlank()) {
                 val task = Task(
@@ -45,8 +48,8 @@ class TasksViewModel(val dao: TaskDao) : ViewModel() {
                 )
                 dao.insert(task)
 
-                newTaskName.value = ""
-                newTaskText.value = ""
+                _newTaskName.value = ""
+                _newTaskText.value = ""
             }
         }
     }
