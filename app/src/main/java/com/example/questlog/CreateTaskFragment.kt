@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.example.questlog.databinding.FragmentCreateTaskBinding
+import kotlinx.coroutines.launch
 
 class CreateTaskFragment : Fragment() {
     private var _binding : FragmentCreateTaskBinding? = null
@@ -30,12 +32,17 @@ class CreateTaskFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.navigateToList.observe(viewLifecycleOwner, Observer { navigate ->
-            if (navigate) {
-                view.findNavController().navigate(R.id.action_createTaskFragment_to_tasksFragment)
-                viewModel.onNavigatedToList()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.navigateToList.collect { navigate ->
+                if (navigate) {
+                    view.findNavController().navigate(
+                        CreateTaskFragmentDirections
+                            .actionCreateTaskFragmentToTasksFragment()
+                    )
+                    viewModel.onNavigatedToList()
+                }
             }
-        })
+        }
 
         return view
     }

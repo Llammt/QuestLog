@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.questlog.databinding.FragmentEditTaskBinding
+import kotlinx.coroutines.launch
 
 class EditTaskFragment : Fragment() {
     private var _binding : FragmentEditTaskBinding? = null
@@ -33,12 +36,17 @@ class EditTaskFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.navigateToList.observe(viewLifecycleOwner, Observer { navigate ->
-            if (navigate) {
-                view.findNavController().navigate(R.id.action_editTaskFragment_to_tasksFragment)
-                viewModel.onNavigatedToList()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.navigateToList.collect { navigate ->
+                if (navigate) {
+                    findNavController().navigate(
+                        EditTaskFragmentDirections
+                            .actionEditTaskFragmentToTasksFragment()
+                    )
+                    viewModel.onNavigatedToList()
+                }
             }
-        })
+        }
 
         return view
     }
