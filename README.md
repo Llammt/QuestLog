@@ -6,9 +6,7 @@ QuestLog — это Android-приложение для отслеживания
 
 ## Скриншоты
 
-![Список задач](https://github.com/Llammt/QuestLog/blob/main/screenshots/Screenshot_CV_2.png)
-
-![Добавление задачи](https://github.com/Llammt/QuestLog/blob/main/screenshots/Screenshot_CV_1.png)
+![Список задач](https://github.com/Llammt/QuestLog/blob/main/screenshots/Screenshot_CV_2.png) ![Добавление задачи](https://github.com/Llammt/QuestLog/blob/main/screenshots/Screenshot_CV_1.png)
 
 ---
 
